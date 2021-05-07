@@ -10,7 +10,7 @@ class PostImage(models.Model):
         return f"{self.post.title} image"
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+        super(Post, self).save(*args, **kwargs)
         dimensions = (300, 300)
         image = Image.open(self.image.path)
         image.thumbnail(dimensions)

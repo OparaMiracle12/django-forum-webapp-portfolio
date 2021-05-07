@@ -10,10 +10,10 @@ urlpatterns = [
     path('forum-categories/', views.ForumCategoriesView.as_view(), name = "forum_categories"),
     # example: www.website.com/forum-category/entertainment/
     path('forum-categories/<int:pk>/<slug:category>/', views.ForumCategoryDetailView.as_view(), name = "forum_category"),
-    # example: www.website.com/forum/programming/
-    # path('forum/<slug:forum>/', views.ForumDetailView.as_view(), name = "forum_detail"),
-    # # example: www.website.com/post/2/hello-world/
-    # path('post/<int:pk>/<slug:post>/', views.PostDetailView.as_view(), name = "post_detail"),
+    # example: www.website.com/posts/programming/
+    path('posts/<forum>/', views.PostListView.as_view(), name = "post_list"),
+    # # example: www.website.com/posts/2/hello-world/
+    # path('posts/<int:pk>/<slug:post>/', views.post_detail, name = "post_detail"),
     # example: www.website.com/about-us/
     path('about-us/', views.AboutUsView.as_view(), name = "about_us"),
 ]

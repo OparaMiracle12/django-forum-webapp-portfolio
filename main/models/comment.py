@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from .post import Post
@@ -8,6 +9,8 @@ class Comment(MPTTModel):
     image = models.ImageField(upload_to = "comments", blank = True, null = True)
     post = models.ForeignKey(Post, on_delete = models.CASCADE)
     parent = TreeForeignKey('self', on_delete = models.CASCADE, null = True, blank = True, related_name = "children")
+    likes = models.PositiveSmallIntegerField(default=0, validators = [MinValueValidator(0)])
+    dislikes = models.PositiveSmallIntegerField(default=0, validators = [MinValueValidator(0)])
 
     def __str__(self):
         return self.content

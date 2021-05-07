@@ -1,3 +1,3 @@
-import * as s from "./scss/index.scss";
+import "./scss/index.scss";
 
 console.log("hello");

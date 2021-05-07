@@ -1,4 +1,5 @@
 from django.views import generic
+from django.shortcuts import get_object_or_404
 from . import models
 
 class HomeView(generic.ListView):
@@ -16,17 +17,23 @@ class ForumCategoriesView(generic.ListView):
 
 
 class ForumCategoryDetailView(generic.DetailView):
-    """ Forums page view """
+    """ Forum category page view"""
     model = models.ForumCategory
     template_name='main/forum_category_detail.html'
 
+class PostListView(generic.ListView):
+    """ Post List view based on a particular forum """
+    paginated_by = 10
+    template_name = "main/post_list.html"
+    
+    def get_queryset(self, **kwargs):
+        self.forum = get_object_or_404(models.Forum, name=self.kwargs['forum'])
+        return models.Post.objects.filter(forum = self.forum)
 
-class ForumsDetailView():
-    pass
-
-
-class PostDetailView():
-    pass
+    def get_context_data(self, **kwargs):
+        context = super(PostListView, self).get_context_data(**kwargs)
+        context['forum'] = self.forum
+        return context
 
 
 class AboutUsView(generic.TemplateView):

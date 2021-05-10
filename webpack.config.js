@@ -21,7 +21,6 @@ module.exports = {
             use: "ts-loader",
             exclude: /node_modules/,
          },
-
          {
             test: /\.(sa|sc|c)ss$/,
             use: [

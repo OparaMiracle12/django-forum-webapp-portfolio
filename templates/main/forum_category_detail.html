@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %} Home page {% endblock title %}
+{% block title %} {{category.slug}} {% endblock title %}
 
 {% block content %}
-<h1>Category Detail</h1>
+    <div class="forum-category py-4">
+        <h2 class="title display-6">{{category}}</h2>
+
+        <div class="row">
+            {% for forum in category.forum_set.all %}
+                <div class="col-md-6">
+                    <div class="card shadow-sm p-3 mb-2 bg-white rounded">
+                        <div class="card-body">
+                            <a href="{% url 'main:post_list' forum.name %}">
+                                {{forum.name}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
 {% endblock content %}

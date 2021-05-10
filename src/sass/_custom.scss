@@ -1,0 +1,45 @@
+// RESETS
+body {
+   display: flex;
+   flex-direction: column;
+   height: 100vh;
+}
+
+a {
+   text-decoration: none;
+   display: inline-block;
+}
+
+ul {
+   list-style: none;
+}
+
+// HEADER COMPONENT
+header {
+   background-color: black;
+
+   .container {
+      display: flex;
+      align-items: center;
+   }
+
+   .brand a {
+      color: white;
+      font-style: italic;
+      font-weight: 400;
+   }
+
+   .dashboard {
+      @extend .text-light;
+      margin-left: 15px;
+   }
+
+   .navigation {
+      display: none;
+      margin-left: auto;
+   }
+
+   .navigation-toggler {
+      margin-left: auto;
+   }
+}

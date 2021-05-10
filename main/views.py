@@ -4,7 +4,7 @@ from . import models
 
 class HomeView(generic.ListView):
     """ Home page view """
-    model = models.Post
+    queryset = models.Post.objects.all()[:4]
     context_object_name = 'posts'
     template_name = 'main/index.html'
 
@@ -19,11 +19,14 @@ class ForumCategoriesView(generic.ListView):
 class ForumCategoryDetailView(generic.DetailView):
     """ Forum category page view"""
     model = models.ForumCategory
+    context_object_name = "category"
     template_name='main/forum_category_detail.html'
+
 
 class PostListView(generic.ListView):
     """ Post List view based on a particular forum """
-    paginated_by = 10
+    paginate_by = 2
+    context_object_name = 'posts' 
     template_name = "main/post_list.html"
     
     def get_queryset(self, **kwargs):
